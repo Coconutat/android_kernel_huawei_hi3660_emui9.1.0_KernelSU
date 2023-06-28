@@ -58,3 +58,8 @@ drivers/hisi/tzdriver/
 drivers/kernelsu
 mybuild.sh
 
+scripts/kconfig/zconf.tab.c
+scripts/kconfig/zconf.lex.c
+scripts/kconfig/zconf.hash.c
+scripts/kconfig/conf
+scripts/basic/fixdep

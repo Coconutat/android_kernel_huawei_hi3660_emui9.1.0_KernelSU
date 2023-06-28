@@ -44,6 +44,7 @@ x509.genkey
 !.README_OLD.md
 !.build.config.goldfish.*
 !.clang-format
+!.github
 
 #
 # Generated include files

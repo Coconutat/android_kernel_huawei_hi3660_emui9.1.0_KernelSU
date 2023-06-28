@@ -45,7 +45,6 @@ jobs:
 
     - name: Build Kernel
       run: |
-       cp -rf MOD_FILE/selinuxfs/selinuxfs.c security/selinux/selinuxfs.c
        if [ -d include/config ];
         then
          echo "Find config,will remove it"

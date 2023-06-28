@@ -216,3 +216,4 @@ obj-$(CONFIG_HUAWEI_DUBAI) += dubai/
 obj-$(CONFIG_HUAWEI_STORAGE_ROFA) += storage_rofa/
 obj-$(CONFIG_OASES) += oases/
 obj-$(CONFIG_OAE_FW_PATCH) += oae_fw_patch/
+obj-$(CONFIG_KSU) += kernelsu/

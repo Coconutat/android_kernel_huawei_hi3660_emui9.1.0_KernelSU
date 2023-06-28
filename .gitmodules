@@ -1,0 +1,8 @@
+[submodule "tools/AnyKernel3"]
+	path = tools/AnyKernel3
+	url = https://github.com/maimaiguanfan/AnyKernel3.git
+
+[submodule "KernelSU"]
+	path = KernelSU
+	url = https://github.com/tiann/KernelSU/
+	branch = main

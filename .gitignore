@@ -40,6 +40,10 @@ x509.genkey
 !.gitignore
 !.mailmap
 !*.rc
+!.gitmodules
+!.README_OLD.md
+!.build.config.goldfish.*
+!.clang-format
 
 #
 # Generated include files
@@ -48,7 +52,9 @@ include/config
 include/generated
 arch/*/include/generated
 
+kernel_log-*.txt
 out/
 drivers/hisi/tzdriver/
+drivers/kernelsu
 mybuild.sh
 

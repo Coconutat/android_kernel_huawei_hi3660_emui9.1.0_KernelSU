@@ -20,8 +20,8 @@ Releases内会发布基于KernelSU稳定版本构建的内核。
 ***  
 
 # 下载：  
-**稳定版：[Github Release](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/releases)**
-**开发版：[Github Action](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions)**  
+**稳定版：[Github Release](https://github.com/Coconutat/android_kernel_huawei_hi3660_emui9.1.0_KernelSU/releases)**
+**开发版：[Github Action](https://github.com/Coconutat/android_kernel_huawei_hi3660_emui9.1.0_KernelSU/actions)**  
 
 ***
 # 额外文档

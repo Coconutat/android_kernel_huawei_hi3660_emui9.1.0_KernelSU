@@ -44,3 +44,9 @@ scripts/kconfig/zconf.lex.c
 scripts/kconfig/zconf.hash.c
 scripts/kconfig/conf
 scripts/basic/fixdep
+scripts/basic/.fixdep.cmd
+scripts/kconfig/.conf.cmd
+scripts/kconfig/.conf.o.cmd
+scripts/kconfig/.zconf.tab.o.cmd
+scripts/kconfig/conf.o
+scripts/kconfig/zconf.tab.o

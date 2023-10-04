@@ -1,4 +1,4 @@
-name: Build Huawei-hi3660-KSU-EMUI9.1.0-EPM-Kernel
+name: Build Huawei-hi3660-KSU-EMUI9.1.0-Kernel
 on:
   workflow_dispatch:
   schedule:
@@ -61,6 +61,7 @@ jobs:
        export SUBARCH=arm64
        make $KERNEL_CMDLINE Pangu_P10_KSU_defconfig
        make $KERNEL_CMDLINE -j$(nproc --all)
+       tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU-EMUI9.1.0-enforcing-${{ steps.get_time.outputs.TIME }}.img
        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU-EMUI9.1.0-permissive-${{ steps.get_time.outputs.TIME }}.img
 
     - name: Upload P10-KSU-Kernel
@@ -68,3 +69,32 @@ jobs:
       with:
         name: Pangu_P10_KSU-EMUI9.1.0-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU-*.img"
+
+- name: Build V9-KSU-Kernel
+      run: |
+        if [ -d include/config ];
+         then
+          echo "Find config,will remove it"
+          rm -rf include/config
+        else
+          echo "No Config,good."
+        fi
+
+        rm -rf KernelSU
+        rm -rf drivers/kernelsu
+        rm -rf out
+        rm -rf Pangu_P10_KSU-*.img
+        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+        export PATH=$(pwd)/ToolChains/bin/:$PATH
+        export ARCH=arm64
+        export SUBARCH=arm64
+        make $KERNEL_CMDLINE Pangu_KSU_defconfig
+        make $KERNEL_CMDLINE -j$(nproc --all)
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=enforcing buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU-enforcing-${{ steps.get_time.outputs.TIME }}.img
+        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU-permissive-${{ steps.get_time.outputs.TIME }}.img
+
+    - name: Upload V9-KSU-Kernel
+      uses: actions/upload-artifact@v3
+      with:
+        name: Pangu_V9_KSU-kernel-${{ steps.get_time.outputs.TIME }}
+        path: "Pangu_V9_KSU-*.img"

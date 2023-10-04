@@ -70,7 +70,7 @@ jobs:
         name: Pangu_P10_KSU-EMUI9.1.0-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU-*.img"
 
-- name: Build V9-KSU-Kernel
+    - name: Build V9-KSU-Kernel
       run: |
         if [ -d include/config ];
          then

@@ -35,6 +35,7 @@ arch/*/include/generated
 
 kernel_log-*.log
 KernelSU
+KernelSU-Next
 out/
 drivers/hisi/tzdriver/
 drivers/kernelsu

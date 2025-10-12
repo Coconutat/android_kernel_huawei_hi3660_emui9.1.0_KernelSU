@@ -2300,7 +2300,7 @@ static int check_nnp_nosuid(const struct linux_binprm *bprm,
 	#ifdef CONFIG_KSU
 	int rc, error;
 	u32 seclen;
-	#elif
+	#else
 	int rc;
 	#endif
 
